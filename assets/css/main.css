@@ -1,0 +1,275 @@
+/* =====================================================
+   FULL RESPONSIVE CSS — FULLY LABELED
+   PHONE / TABLET / PC MARKED CLEARLY
+===================================================== */
+
+/* =====================================================
+   1) RESET + GLOBAL STABILITY (ALL DEVICES)
+===================================================== */
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  overflow-wrap:break-word;
+}
+
+html,body{
+  max-width:100%;
+  overflow-x:hidden;
+}
+
+img{
+  max-width:100%;
+  height:auto;
+  display:block;
+}
+
+a{text-decoration:none;color:inherit;}
+ul{list-style:none;}
+
+body{
+  font-family:Poppins,Arial,Helvetica,sans-serif;
+  background:#f5f7fb;
+  color:#222;
+  line-height:1.6;
+}
+
+/* =====================================================
+   2) DESIGN TOKENS (ALL DEVICES)
+===================================================== */
+:root{
+  --primary:#0d47a1;
+  --secondary:#1565c0;
+  --accent:#ffc107;
+  --white:#fff;
+  --muted:#666;
+
+  --radius:10px;
+  --shadow-sm:0 1px 3px rgba(0,0,0,.08);
+  --shadow-md:0 4px 12px rgba(0,0,0,.12);
+  --shadow-lg:0 10px 28px rgba(0,0,0,.18);
+}
+
+/* =====================================================
+   3) CONTAINER (ALL DEVICES SAFE WIDTH)
+===================================================== */
+.container{
+  width:92%;
+  max-width:1200px;
+  margin:auto;
+  padding:0 12px;
+}
+
+.section{padding:clamp(40px,6vw,80px) 0;}
+
+/* =====================================================
+   4) TYPOGRAPHY (MOBILE FIRST)
+===================================================== */
+.title{font-size:22px;font-weight:700;margin-bottom:12px;}
+.subtitle{font-size:16px;color:var(--secondary);margin-bottom:8px;}
+.text{font-size:14px;color:var(--muted);} 
+.small{font-size:12px;}
+.bold{font-weight:600;}
+
+@media(min-width:601px){
+  .title{font-size:26px;}
+  .subtitle{font-size:18px;}
+  .text{font-size:15px;}
+}
+
+@media(min-width:901px){
+  .title{font-size:32px;}
+  .subtitle{font-size:22px;}
+  .text{font-size:16px;}
+}
+
+@media(min-width:1600px){
+  .title{font-size:42px;}
+  .subtitle{font-size:28px;}
+  .text{font-size:18px;}
+}
+
+/* =====================================================
+   5) GRID SYSTEM
+===================================================== */
+.grid{display:grid;gap:25px;}
+
+.grid-4{grid-template-columns:repeat(4,1fr);} 
+.grid-3{grid-template-columns:repeat(3,1fr);} 
+.grid-2{grid-template-columns:repeat(2,1fr);} 
+
+@media(max-width:900px){
+  .grid-4,.grid-3{grid-template-columns:repeat(2,1fr);} 
+}
+
+@media(max-width:600px){
+  .grid-4,.grid-3,.grid-2{grid-template-columns:1fr;} 
+}
+
+/* =====================================================
+   6) FLEX UTILITIES
+===================================================== */
+.flex{display:flex;gap:15px;flex-wrap:wrap;}
+.center{align-items:center;justify-content:center;text-align:center;}
+
+/* =====================================================
+   7) CARDS
+===================================================== */
+.card{
+  background:var(--white);
+  padding:20px;
+  border-radius:var(--radius);
+  box-shadow:var(--shadow-sm);
+  transition:.25s;
+  overflow:hidden;
+}
+.card:hover{transform:translateY(-4px);box-shadow:var(--shadow-md);} 
+.card-lg{padding:30px;box-shadow:var(--shadow-md);} 
+.card-flat{box-shadow:none;border:1px solid #ddd;}
+
+/* =====================================================
+   8) IMAGES
+===================================================== */
+.avatar{width:120px;height:120px;border-radius:50%;object-fit:cover;margin:auto;}
+.img-cover{width:100%;height:220px;object-fit:cover;border-radius:var(--radius);} 
+
+/* =====================================================
+   9) BUTTONS
+===================================================== */
+.btn{padding:10px 18px;border-radius:6px;display:inline-block;}
+.btn-primary{background:var(--primary);color:#fff;}
+.btn-outline{border:2px solid var(--primary);color:var(--primary);} 
+
+/* =====================================================
+   10) TABLES
+===================================================== */
+.table{
+  width:100%;
+  border-collapse:collapse;
+  background:#fff;
+  display:block;
+  overflow-x:auto;
+}
+.table th,.table td{padding:12px;border:1px solid #ddd;text-align:left;}
+.table th{background:var(--primary);color:#fff;}
+
+/* =====================================================
+   11) HEADER / NAVBAR
+===================================================== */
+.header{background:var(--primary);color:#fff;}
+
+#menuToggle{display:none;background:none;border:none;color:#fff;}
+
+#navbar{display:flex;align-items:center;}
+#navbar ul{display:flex;gap:20px;}
+#navbar a{color:#fff;font-weight:500;}
+#navbar a:hover{color:var(--accent);} 
+
+.dropdown{position:relative;}
+.dropdown-menu{
+  position:absolute;
+  display:none;
+  background:#fff;
+  color:#222;
+  box-shadow:0 4px 12px rgba(0,0,0,.15);
+  padding:10px 0;
+  min-width:200px;
+  z-index:1000;
+}
+.dropdown:hover .dropdown-menu{display:block;} 
+
+/* =====================================================
+   MOBILE NAVBAR
+===================================================== */
+@media(max-width:600px){
+
+  #menuToggle{
+    display:block;
+    font-size:24px;
+    cursor:pointer;
+    padding:10px;
+  }
+
+  #navbar{
+    display:none;
+    width:100%;
+    flex-direction:column;
+    background:var(--primary);
+  }
+
+  #navbar.active{display:flex;} 
+
+  #navbar ul{
+    flex-direction:column;
+    width:100%;
+    gap:0;
+  }
+
+  #navbar li{width:100%;}
+
+  #navbar a{
+    display:block;
+    padding:14px 20px;
+    border-top:1px solid rgba(255,255,255,.2);
+  }
+
+  .dropdown:hover .dropdown-menu{display:none;} 
+
+  .dropdown-menu{
+    position:static;
+    display:none;
+    background:#0b2a63;
+    color:#fff;
+    box-shadow:none;
+  }
+
+  .dropdown-menu.active{display:block;} 
+}
+
+/* =====================================================
+   12) HERO BANNER
+===================================================== */
+.hero{
+  background:linear-gradient(rgba(0,0,0,.5),rgba(0,0,0,.5)),
+  url('../images/banner.jpg') center/cover;
+  color:#fff;
+  text-align:center;
+  min-height:50vh;
+  display:flex;
+  align-items:center;
+}
+
+/* =====================================================
+   13) FOOTER
+===================================================== */
+.footer{
+  background:#0b2a63;
+  color:#ddd;
+  padding:40px 0;
+  font-size:14px;
+}
+.footer a{color:#fff;}
+
+/* =====================================================
+   14) UTILITIES
+===================================================== */
+.mt-20{margin-top:20px;}
+.mt-40{margin-top:40px;}
+.p-10{padding:10px;}
+.p-20{padding:20px;}
+.bg-white{background:#fff;}
+.shadow-lg{box-shadow:var(--shadow-lg);} 
+.round{border-radius:var(--radius);} 
+
+/* =====================================================
+   15) FINAL SAFETY RULES
+===================================================== */
+p,h1,h2,h3,h4,td,th,a{word-break:break-word;} 
+.grid>*{min-width:0;} 
+iframe{max-width:100%;} 
+@media(max-width:600px){body{overflow-x:hidden;}}
+
+/* Prevent page scroll when mobile menu is open */
+body.menu-open{
+  overflow:hidden;
+}
