@@ -11,6 +11,7 @@
 // Run after DOM is fully loaded
 document.addEventListener('DOMContentLoaded', () => {
   loadPartials();
+  initSlider();
 });
 
 /* =====================================================
