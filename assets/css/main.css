@@ -1,12 +1,16 @@
+
 /* =====================================================
-   FULL RESPONSIVE CSS — FINAL WORKING VERSION
+   FULL RESPONSIVE CSS — FINAL STABLE VERSION
 ===================================================== */
 
-/* ================= RESET ================= */
+/* =====================================================
+   1) RESET
+===================================================== */
 *{
   margin:0;
   padding:0;
   box-sizing:border-box;
+  overflow-wrap:break-word;
 }
 
 html,body{
@@ -30,16 +34,24 @@ body{
   line-height:1.6;
 }
 
-/* ================= DESIGN TOKENS ================= */
+/* =====================================================
+   2) DESIGN TOKENS
+===================================================== */
 :root{
   --primary:#0d47a1;
   --secondary:#1565c0;
   --accent:#ffc107;
   --white:#fff;
   --muted:#666;
+
+  --radius:10px;
+  --shadow-sm:0 1px 3px rgba(0,0,0,.08);
+  --shadow-md:0 4px 12px rgba(0,0,0,.12);
 }
 
-/* ================= CONTAINER ================= */
+/* =====================================================
+   3) CONTAINER
+===================================================== */
 .container{
   width:92%;
   max-width:1200px;
@@ -47,9 +59,65 @@ body{
   padding:0 12px;
 }
 
-/* ================= HEADER ================= */
+.section{
+  padding:clamp(40px,6vw,80px) 0;
+}
+
+/* =====================================================
+   4) TYPOGRAPHY
+===================================================== */
+.title{font-size:22px;font-weight:700;margin-bottom:12px;}
+.subtitle{font-size:16px;color:var(--secondary);margin-bottom:8px;}
+.text{font-size:14px;color:var(--muted);}
+
+@media(min-width:601px){
+  .title{font-size:26px;}
+  .subtitle{font-size:18px;}
+}
+
+@media(min-width:901px){
+  .title{font-size:32px;}
+  .subtitle{font-size:22px;}
+}
+
+/* =====================================================
+   5) GRID
+===================================================== */
+.grid{display:grid;gap:25px;}
+.grid-4{grid-template-columns:repeat(4,1fr);}
+.grid-3{grid-template-columns:repeat(3,1fr);}
+.grid-2{grid-template-columns:repeat(2,1fr);}
+
+@media(max-width:900px){
+  .grid-4,.grid-3{grid-template-columns:repeat(2,1fr);}
+}
+
+@media(max-width:600px){
+  .grid-4,.grid-3,.grid-2{grid-template-columns:1fr;}
+}
+
+/* =====================================================
+   6) CARDS
+===================================================== */
+.card{
+  background:#fff;
+  padding:20px;
+  border-radius:var(--radius);
+  box-shadow:var(--shadow-sm);
+  transition:.25s;
+}
+
+.card:hover{
+  transform:translateY(-4px);
+  box-shadow:var(--shadow-md);
+}
+
+/* =====================================================
+   7) HEADER / NAVBAR
+===================================================== */
 .header{
   background:var(--primary);
+  color:#fff;
   padding:10px 0;
 }
 
@@ -59,13 +127,18 @@ body{
   justify-content:space-between;
 }
 
-/* LOGO */
 .logo img{
-  height:60px;
+  height:65px;
   width:auto;
 }
 
-/* NAV */
+#menuToggle{
+  display:none;
+  background:none;
+  border:none;
+  color:#fff;
+}
+
 #navbar{
   display:flex;
   align-items:center;
@@ -73,13 +146,8 @@ body{
 
 #navbar ul{
   display:flex;
+  gap:18px;
   align-items:center;
-  gap:22px;
-}
-
-#navbar ul li{
-  position:relative;
-  display:inline-block; /* CRITICAL FIX */
 }
 
 #navbar a{
@@ -92,29 +160,25 @@ body{
   color:var(--accent);
 }
 
-/* MOBILE BUTTON */
-#menuToggle{
-  display:none;
-  background:none;
-  border:none;
-  font-size:24px;
-  color:#fff;
-  cursor:pointer;
+/* =====================================================
+   CLICK BASED DROPDOWN (DESKTOP FIXED)
+===================================================== */
+.dropdown{
+  position:relative;
 }
 
-/* ================= DROPDOWN (CLICK BASED) ================= */
 .dropdown-menu{
   position:absolute;
   top:100%;
   left:0;
   display:none;
   background:#fff;
-  min-width:220px;
-  padding:6px 0;
+  color:#222;
   box-shadow:0 8px 20px rgba(0,0,0,.15);
+  padding:6px 0;
+  min-width:220px;
   border-radius:6px;
   z-index:1000;
-  white-space:nowrap;
 }
 
 .dropdown-menu li{
@@ -126,6 +190,7 @@ body{
   padding:10px 18px;
   font-size:14px;
   color:#222;
+  white-space:nowrap;
 }
 
 .dropdown-menu li a:hover{
@@ -136,11 +201,16 @@ body{
   display:block;
 }
 
-/* ================= MOBILE NAV ================= */
+/* =====================================================
+   MOBILE NAVBAR
+===================================================== */
 @media(max-width:600px){
 
   #menuToggle{
     display:block;
+    font-size:24px;
+    cursor:pointer;
+    padding:10px;
   }
 
   #navbar{
@@ -172,9 +242,10 @@ body{
 
   .dropdown-menu{
     position:static;
+    background:#0b2a63;
+    color:#fff;
     box-shadow:none;
     border-radius:0;
-    background:#0b2a63;
   }
 
   .dropdown-menu li a{
@@ -182,7 +253,9 @@ body{
   }
 }
 
-/* ================= HERO SLIDER ================= */
+/* =====================================================
+   HERO SLIDER (FIXED CROP)
+===================================================== */
 .hero-slider{
   position:relative;
   height:60vh;
@@ -203,7 +276,9 @@ body{
   display:block;
 }
 
-/* ================= FOOTER ================= */
+/* =====================================================
+   FOOTER
+===================================================== */
 .footer{
   background:#0b2a63;
   color:#ddd;
@@ -215,6 +290,8 @@ body{
   color:#fff;
 }
 
-/* ================= SAFETY ================= */
+/* =====================================================
+   SAFETY
+===================================================== */
 iframe{max-width:100%;}
 body.menu-open{overflow:hidden;}
