@@ -1,10 +1,8 @@
-/* =====================================================
-   FULL RESPONSIVE CSS — FINAL STABLE VERSION
-===================================================== */
+/* ======================================================================
+   FULL RESPONSIVE CSS — FINAL VERSION (HORIZONTAL DROPDOWN)
+   ====================================================================== */
 
-/* =====================================================
-   1) RESET
-===================================================== */
+/* 1) RESET */
 *{
   margin:0;
   padding:0;
@@ -33,24 +31,19 @@ body{
   line-height:1.6;
 }
 
-/* =====================================================
-   2) DESIGN TOKENS
-===================================================== */
+/* 2) DESIGN TOKENS */
 :root{
   --primary:#0d47a1;
   --secondary:#1565c0;
   --accent:#ffc107;
   --white:#fff;
   --muted:#666;
-
   --radius:10px;
   --shadow-sm:0 1px 3px rgba(0,0,0,.08);
   --shadow-md:0 4px 12px rgba(0,0,0,.12);
 }
 
-/* =====================================================
-   3) CONTAINER
-===================================================== */
+/* 3) CONTAINER */
 .container{
   width:92%;
   max-width:1200px;
@@ -62,9 +55,7 @@ body{
   padding:clamp(40px,6vw,80px) 0;
 }
 
-/* =====================================================
-   4) TYPOGRAPHY
-===================================================== */
+/* 4) TYPOGRAPHY */
 .title{font-size:22px;font-weight:700;margin-bottom:12px;}
 .subtitle{font-size:16px;color:var(--secondary);margin-bottom:8px;}
 .text{font-size:14px;color:var(--muted);}
@@ -79,9 +70,7 @@ body{
   .subtitle{font-size:22px;}
 }
 
-/* =====================================================
-   5) GRID
-===================================================== */
+/* 5) GRID */
 .grid{display:grid;gap:25px;}
 .grid-4{grid-template-columns:repeat(4,1fr);}
 .grid-3{grid-template-columns:repeat(3,1fr);}
@@ -95,9 +84,7 @@ body{
   .grid-4,.grid-3,.grid-2{grid-template-columns:1fr;}
 }
 
-/* =====================================================
-   6) CARDS
-===================================================== */
+/* 6) CARDS */
 .card{
   background:#fff;
   padding:20px;
@@ -111,9 +98,7 @@ body{
   box-shadow:var(--shadow-md);
 }
 
-/* =====================================================
-   7) HEADER / NAVBAR
-===================================================== */
+/* 7) HEADER / NAVBAR */
 .header{
   background:var(--primary);
   color:#fff;
@@ -160,17 +145,17 @@ body{
 }
 
 /* =====================================================
-   CLICK BASED DROPDOWN (DESKTOP FIXED)
+   HORIZONTAL DROPDOWN (FIXED WHITE BOX + HORIZONTAL)
 ===================================================== */
 .dropdown{
   position:relative;
 }
 
 .dropdown-menu{
+  display: none !important;  /* FIX: Always closed initially */
   position:absolute;
   top:100%;
-  left:0;
-  display:none;
+  left:-40px;  /* HORIZONTAL OFFSET */
   background:#fff;
   color:#222;
   box-shadow:0 8px 20px rgba(0,0,0,.15);
@@ -196,15 +181,14 @@ body{
   background:#f2f4f8;
 }
 
-.dropdown-menu.active{
-  display:block;
+/* FIX: Hover + Click + HORIZONTAL */
+.dropdown:hover .dropdown-menu,
+.dropdown-menu.active {
+  display: block !important;
 }
 
-/* =====================================================
-   MOBILE NAVBAR
-===================================================== */
+/* MOBILE NAVBAR */
 @media(max-width:600px){
-
   #menuToggle{
     display:block;
     font-size:24px;
@@ -240,11 +224,16 @@ body{
   }
 
   .dropdown-menu{
-    position:static;
+    position:static !important;
     background:#0b2a63;
     color:#fff;
     box-shadow:none;
     border-radius:0;
+    display:none;
+  }
+
+  .dropdown-menu.active{
+    display:block !important;
   }
 
   .dropdown-menu li a{
@@ -252,9 +241,7 @@ body{
   }
 }
 
-/* =====================================================
-   HERO SLIDER (FIXED CROP)
-===================================================== */
+/* HERO SLIDER */
 .hero-slider{
   position:relative;
   height:60vh;
@@ -275,9 +262,7 @@ body{
   display:block;
 }
 
-/* =====================================================
-   FOOTER
-===================================================== */
+/* FOOTER */
 .footer{
   background:#0b2a63;
   color:#ddd;
@@ -289,8 +274,6 @@ body{
   color:#fff;
 }
 
-/* =====================================================
-   SAFETY
-===================================================== */
+/* SAFETY */
 iframe{max-width:100%;}
 body.menu-open{overflow:hidden;}
