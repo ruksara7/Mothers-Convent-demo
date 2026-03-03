@@ -1,9 +1,9 @@
 /* =====================================================
-   FULL RESPONSIVE CSS — CLICK-BASED DROPDOWN VERSION
+   FULL RESPONSIVE CSS — FINAL STABLE VERSION
 ===================================================== */
 
 /* =====================================================
-   1) RESET + GLOBAL STABILITY
+   1) RESET
 ===================================================== */
 *{
   margin:0;
@@ -46,7 +46,6 @@ body{
   --radius:10px;
   --shadow-sm:0 1px 3px rgba(0,0,0,.08);
   --shadow-md:0 4px 12px rgba(0,0,0,.12);
-  --shadow-lg:0 10px 28px rgba(0,0,0,.18);
 }
 
 /* =====================================================
@@ -59,68 +58,66 @@ body{
   padding:0 12px;
 }
 
-.section{padding:clamp(40px,6vw,80px) 0;}
+.section{
+  padding:clamp(40px,6vw,80px) 0;
+}
 
 /* =====================================================
    4) TYPOGRAPHY
 ===================================================== */
 .title{font-size:22px;font-weight:700;margin-bottom:12px;}
 .subtitle{font-size:16px;color:var(--secondary);margin-bottom:8px;}
-.text{font-size:14px;color:var(--muted);} 
-.small{font-size:12px;}
-.bold{font-weight:600;}
+.text{font-size:14px;color:var(--muted);}
 
 @media(min-width:601px){
   .title{font-size:26px;}
   .subtitle{font-size:18px;}
-  .text{font-size:15px;}
 }
 
 @media(min-width:901px){
   .title{font-size:32px;}
   .subtitle{font-size:22px;}
-  .text{font-size:16px;}
 }
 
 /* =====================================================
-   5) GRID SYSTEM
+   5) GRID
 ===================================================== */
 .grid{display:grid;gap:25px;}
-.grid-4{grid-template-columns:repeat(4,1fr);} 
-.grid-3{grid-template-columns:repeat(3,1fr);} 
-.grid-2{grid-template-columns:repeat(2,1fr);} 
+.grid-4{grid-template-columns:repeat(4,1fr);}
+.grid-3{grid-template-columns:repeat(3,1fr);}
+.grid-2{grid-template-columns:repeat(2,1fr);}
 
 @media(max-width:900px){
-  .grid-4,.grid-3{grid-template-columns:repeat(2,1fr);} 
+  .grid-4,.grid-3{grid-template-columns:repeat(2,1fr);}
 }
 
 @media(max-width:600px){
-  .grid-4,.grid-3,.grid-2{grid-template-columns:1fr;} 
+  .grid-4,.grid-3,.grid-2{grid-template-columns:1fr;}
 }
 
 /* =====================================================
-   6) FLEX UTILITIES
-===================================================== */
-.flex{display:flex;gap:15px;flex-wrap:wrap;}
-.center{align-items:center;justify-content:center;text-align:center;}
-
-/* =====================================================
-   7) CARDS
+   6) CARDS
 ===================================================== */
 .card{
-  background:var(--white);
+  background:#fff;
   padding:20px;
   border-radius:var(--radius);
   box-shadow:var(--shadow-sm);
   transition:.25s;
-  overflow:hidden;
 }
-.card:hover{transform:translateY(-4px);box-shadow:var(--shadow-md);} 
+.card:hover{
+  transform:translateY(-4px);
+  box-shadow:var(--shadow-md);
+}
 
 /* =====================================================
-   8) HEADER / NAVBAR
+   7) HEADER / NAVBAR
 ===================================================== */
-.header{background:var(--primary);color:#fff;}
+.header{
+  background:var(--primary);
+  color:#fff;
+  padding:10px 0;
+}
 
 .header .container{
   display:flex;
@@ -128,6 +125,13 @@ body{
   justify-content:space-between;
 }
 
+/* LOGO FIX */
+.logo img{
+  height:65px;
+  width:auto;
+}
+
+/* MENU BUTTON */
 #menuToggle{
   display:none;
   background:none;
@@ -135,6 +139,7 @@ body{
   color:#fff;
 }
 
+/* NAVBAR */
 #navbar{
   display:flex;
   align-items:center;
@@ -142,20 +147,26 @@ body{
 
 #navbar ul{
   display:flex;
-  gap:20px;
+  gap:18px;
+  align-items:center;
 }
 
 #navbar a{
   color:#fff;
   font-weight:500;
+  white-space:nowrap;
 }
 
 #navbar a:hover{
   color:var(--accent);
 }
 
-/* CLICK BASED DROPDOWN */
-.dropdown{position:relative;}
+/* =====================================================
+   CLICK BASED DROPDOWN
+===================================================== */
+.dropdown{
+  position:relative;
+}
 
 .dropdown-menu{
   position:absolute;
@@ -166,6 +177,14 @@ body{
   padding:10px 0;
   min-width:200px;
   z-index:1000;
+}
+
+.dropdown-menu li{
+  padding:8px 15px;
+}
+
+.dropdown-menu li a{
+  color:#222;
 }
 
 .dropdown-menu.active{
@@ -191,7 +210,9 @@ body{
     background:var(--primary);
   }
 
-  #navbar.active{display:flex;} 
+  #navbar.active{
+    display:flex;
+  }
 
   #navbar ul{
     flex-direction:column;
@@ -199,7 +220,9 @@ body{
     gap:0;
   }
 
-  #navbar li{width:100%;}
+  #navbar li{
+    width:100%;
+  }
 
   #navbar a{
     display:block;
@@ -213,21 +236,14 @@ body{
     color:#fff;
     box-shadow:none;
   }
+
+  .dropdown-menu li a{
+    color:#fff;
+  }
 }
 
 /* =====================================================
-   9) FOOTER
-===================================================== */
-.footer{
-  background:#0b2a63;
-  color:#ddd;
-  padding:40px 0;
-  font-size:14px;
-}
-.footer a{color:#fff;}
-
-/* =====================================================
-   10) HERO SLIDER
+   HERO SLIDER
 ===================================================== */
 .hero-slider{
   position:relative;
@@ -242,19 +258,28 @@ body{
   background-size:cover;
   background-position:center;
   display:none;
-  align-items:center;
-  justify-content:center;
-  text-align:center;
-  color:#fff;
 }
 
 .slide.active{
-  display:flex;
+  display:block;
 }
 
 /* =====================================================
-   SAFETY RULES
+   FOOTER
 ===================================================== */
-p,h1,h2,h3,h4,td,th,a{word-break:break-word;} 
+.footer{
+  background:#0b2a63;
+  color:#ddd;
+  padding:40px 0;
+  font-size:14px;
+}
+
+.footer a{
+  color:#fff;
+}
+
+/* =====================================================
+   SAFETY
+===================================================== */
 iframe{max-width:100%;}
 body.menu-open{overflow:hidden;}
