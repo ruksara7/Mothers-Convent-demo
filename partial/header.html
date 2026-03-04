@@ -1,87 +1,134 @@
 <header class="site-header">
+    <div class="header-container">
+        <!-- LOGO -->
+        <a class="logo" href="/index.html">
+            <img src="/assets/images/logo/logouse.jpg" alt="Mothers Convent School">
+            <span>Mothers Convent School</span>
+        </a>
 
-<div class="header-container">
+        <!-- MOBILE MENU -->
+        <div id="menuToggle" class="menu-toggle">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
 
-<div class="logo">
-<a href="/index.html">
-<img src="/assets/images/logo/logouse.jpg" alt="School Logo">
-<span>Mothers Convent School</span>
-</a>
-</div>
+        <!-- NAVIGATION -->
+        <nav id="navbar" class="navbar">
+            <ul class="nav-menu">
+                <li>
+                    <a class="nav-link" href="/index.html">Home</a>
+                </li>
 
-<div id="menuToggle" class="menu-toggle">
-<span></span>
-<span></span>
-<span></span>
-</div>
+                <li>
+                    <a class="nav-link" href="/about.html">About</a>
+                </li>
 
-<nav id="navbar" class="navbar">
+                <!-- ACADEMIC -->
+                <li class="dropdown">
+                    <a href="/academic.html" class="nav-link dropdown-toggle">Academic</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="/academic/calendar.html">Academic Calendar</a></li>
+                        <li><a href="/academic/results.html">Results</a></li>
+                        <li><a href="/academic/syllabus.html">Syllabus</a></li>
+                        <li><a href="/academic/timetable.html">Timetable</a></li>
+                    </ul>
+                </li>
 
-<ul class="nav-menu">
+                <!-- ADMINISTRATION -->
+                <li class="dropdown">
+                    <a href="/administration.html" class="nav-link dropdown-toggle">Administration</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="/administration/fees.html">Fees</a></li>
+                        <li><a href="/administration/management.html">Management</a></li>
+                        <li><a href="/administration/mission-vision.html">Mission & Vision</a></li>
+                        <li><a href="/administration/principal.html">Principal</a></li>
+                        <li><a href="/administration/rules.html">Rules</a></li>
+                    </ul>
+                </li>
 
-<li><a class="nav-link" href="/index.html">Home</a></li>
-<li><a class="nav-link" href="/about.html">About</a></li>
+                <!-- FACILITIES -->
+                <li class="dropdown">
+                    <a href="/facilities.html" class="nav-link dropdown-toggle">Facilities</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="/facilities/computer-lab.html">Computer Lab</a></li>
+                        <li><a href="/facilities/laboratory.html">Laboratory</a></li>
+                        <li><a href="/facilities/library.html">Library</a></li>
+                        <li><a href="/facilities/sports.html">Sports</a></li>
+                        <li><a href="/facilities/transport.html">Transport</a></li>
+                    </ul>
+                </li>
 
-<li class="dropdown">
+                <li>
+                    <a class="nav-link" href="/faculty.html">Faculty</a>
+                </li>
 
-<a href="#" class="dropdown-toggle nav-link">Academic</a>
+                <li>
+                    <a class="nav-link" href="/gallery.html">Gallery</a>
+                </li>
 
-<ul class="dropdown-menu">
+                <li>
+                    <a class="nav-link" href="/downloads.html">Downloads</a>
+                </li>
 
-<li><a href="/academic/calendar.html">Calendar</a></li>
-<li><a href="/academic/results.html">Results</a></li>
-<li><a href="/academic/syllabus.html">Syllabus</a></li>
-<li><a href="/academic/timetable.html">Timetable</a></li>
+                <li>
+                    <a class="nav-link" href="/notices.html">Notices</a>
+                </li>
 
-</ul>
+                <li>
+                    <a class="nav-link" href="/admission.html">Admission</a>
+                </li>
 
-</li>
-
-
-<li class="dropdown">
-
-<a href="#" class="dropdown-toggle nav-link">Administration</a>
-
-<ul class="dropdown-menu">
-
-<li><a href="/administration/fees.html">Fees</a></li>
-<li><a href="/administration/management.html">Management</a></li>
-<li><a href="/administration/mission-vision.html">Mission & Vision</a></li>
-<li><a href="/administration/principal.html">Principal</a></li>
-<li><a href="/administration/rules.html">Rules</a></li>
-
-</ul>
-
-</li>
-
-
-<li class="dropdown">
-
-<a href="#" class="dropdown-toggle nav-link">Facilities</a>
-
-<ul class="dropdown-menu">
-
-<li><a href="/facilities/computer-lab.html">Computer Lab</a></li>
-<li><a href="/facilities/laboratory.html">Laboratory</a></li>
-<li><a href="/facilities/library.html">Library</a></li>
-<li><a href="/facilities/sports.html">Sports</a></li>
-<li><a href="/facilities/transport.html">Transport</a></li>
-
-</ul>
-
-</li>
-
-<li><a class="nav-link" href="/faculty.html">Faculty</a></li>
-<li><a class="nav-link" href="/gallery.html">Gallery</a></li>
-<li><a class="nav-link" href="/downloads.html">Downloads</a></li>
-<li><a class="nav-link" href="/notices.html">Notices</a></li>
-<li><a class="nav-link" href="/admission.html">Admission</a></li>
-<li><a class="nav-link" href="/contact.html">Contact</a></li>
-
-</ul>
-
-</nav>
-
-</div>
-
+                <li>
+                    <a class="nav-link" href="/contact.html">Contact</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
 </header>
+
+<script>
+// Header-specific functionality
+(function() {
+    'use strict';
+    
+    // Mobile menu toggle
+    const menuToggle = document.getElementById('menuToggle');
+    const navbar = document.getElementById('navbar');
+    
+    if (menuToggle && navbar) {
+        menuToggle.addEventListener('click', function() {
+            navbar.classList.toggle('active');
+            menuToggle.classList.toggle('active');
+        });
+    }
+    
+    // Close mobile menu when clicking on a link
+    const navLinks = document.querySelectorAll('.nav-link');
+    navLinks.forEach(link => {
+        link.addEventListener('click', function() {
+            navbar.classList.remove('active');
+            menuToggle.classList.remove('active');
+        });
+    });
+    
+    // Auto-detect active page
+    const currentPath = window.location.pathname.replace(/^\//, '').replace(/\.html$/, '');
+    navLinks.forEach(link => {
+        const href = link.getAttribute('href').replace(/^\//, '').replace(/\.html$/, '');
+        if (currentPath === href || (currentPath === '' && href === 'index')) {
+            link.classList.add('active');
+        }
+    });
+    
+    // Dropdown functionality
+    const dropdownToggles = document.querySelectorAll('.dropdown-toggle');
+    dropdownToggles.forEach(toggle => {
+        toggle.addEventListener('click', function(e) {
+            e.preventDefault();
+            const dropdown = this.parentElement;
+            dropdown.classList.toggle('active');
+        });
+    });
+})();
+</script>
