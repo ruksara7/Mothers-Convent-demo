@@ -1,5 +1,5 @@
 /* ======================================================================
-   FULL RESPONSIVE CSS — FINAL CLICK DROPDOWN VERSION
+   FULL RESPONSIVE CSS — FINAL PROFESSIONAL VERSION
    ====================================================================== */
 
 /* ================= RESET ================= */
@@ -128,7 +128,8 @@ body{
   align-items:center;
 }
 
-#navbar ul{
+/* ONLY TOP NAV UL IS FLEX */
+#navbar > ul{
   display:flex;
   gap:18px;
   align-items:center;
@@ -148,13 +149,12 @@ body{
   color:var(--accent);
 }
 
-/* ================= CLICK DROPDOWN ================= */
+/* ================= DROPDOWN ================= */
 
 .dropdown{
   position:relative;
 }
 
-/* hidden by default */
 .dropdown-menu{
   visibility:hidden;
   opacity:0;
@@ -190,7 +190,6 @@ body{
   background:#f2f4f8;
 }
 
-/* visible when JS activates */
 .dropdown-menu.active{
   visibility:visible;
   opacity:1;
@@ -219,7 +218,7 @@ body{
     display:flex;
   }
 
-  #navbar ul{
+  #navbar > ul{
     flex-direction:column;
     width:100%;
     gap:0;
@@ -240,21 +239,12 @@ body{
     background:#0b2a63;
     box-shadow:none;
     border-radius:0;
-
-    visibility:hidden;
-    opacity:0;
-    pointer-events:none;
-  }
-
-  .dropdown-menu.active{
-    visibility:visible;
-    opacity:1;
-    pointer-events:auto;
   }
 
   .dropdown-menu li a{
     color:#fff;
   }
+
 }
 
 /* ================= HERO SLIDER ================= */
