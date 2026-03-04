@@ -1,48 +1,34 @@
-/* ================================
-MASTER JS
-================================ */
+/* =========================================
+   MASTER JS FOR STATIC SCHOOL WEBSITE
+========================================= */
 
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", function () {
 
-  loadHeaderFooter();
+  loadPartials();
+  initMenu();
   initSlider();
 
 });
 
 
-/* ================================
-AUTO PATH DETECTION
-================================ */
+/* =========================================
+   LOAD HEADER AND FOOTER
+========================================= */
 
-function basePath(){
-
-  const depth = location.pathname.split("/").length - 2;
-
-  return depth <= 1 ? "" : "../".repeat(depth-1);
-
-}
-
-
-/* ================================
-LOAD HEADER + FOOTER
-================================ */
-
-function loadHeaderFooter(){
-
-  const base = basePath();
+function loadPartials(){
 
   const header = document.getElementById("header");
   const footer = document.getElementById("footer");
 
   if(header){
 
-    fetch(base + "partial/header.html")
-    .then(r => r.text())
-    .then(html => {
+    fetch("/partial/header.html")
+    .then(res => res.text())
+    .then(data => {
 
-      header.innerHTML = html;
+      header.innerHTML = data;
 
-      /* IMPORTANT */
+      /* menu must start AFTER header loads */
       initMenu();
 
     });
@@ -51,11 +37,11 @@ function loadHeaderFooter(){
 
   if(footer){
 
-    fetch(base + "partial/footer.html")
-    .then(r => r.text())
-    .then(html => {
+    fetch("/partial/footer.html")
+    .then(res => res.text())
+    .then(data => {
 
-      footer.innerHTML = html;
+      footer.innerHTML = data;
 
     });
 
@@ -64,9 +50,9 @@ function loadHeaderFooter(){
 }
 
 
-/* ================================
-MENU SYSTEM
-================================ */
+/* =========================================
+   MENU SYSTEM
+========================================= */
 
 function initMenu(){
 
@@ -75,55 +61,63 @@ function initMenu(){
 
   if(!toggle || !navbar) return;
 
-  toggle.onclick = () => {
+  /* HAMBURGER */
+
+  toggle.addEventListener("click", function(){
 
     navbar.classList.toggle("active");
 
-  };
+  });
 
 
-  document.querySelectorAll(".dropdown-toggle").forEach(btn => {
+  /* DROPDOWN */
 
-    btn.onclick = (e)=>{
+  document.querySelectorAll(".dropdown-toggle").forEach(function(btn){
+
+    btn.addEventListener("click", function(e){
 
       e.preventDefault();
 
-      const menu = btn.nextElementSibling;
+      const menu = this.nextElementSibling;
 
-      document.querySelectorAll(".dropdown-menu").forEach(m=>{
-        if(m!==menu) m.classList.remove("active");
+      document.querySelectorAll(".dropdown-menu").forEach(function(m){
+
+        if(m !== menu){
+          m.classList.remove("active");
+        }
+
       });
 
       menu.classList.toggle("active");
 
-    };
+    });
 
   });
 
 }
 
 
-/* ================================
-SLIDER
-================================ */
+/* =========================================
+   HOMEPAGE SLIDER
+========================================= */
 
 function initSlider(){
 
   const slides = document.querySelectorAll(".slide");
 
-  if(!slides.length) return;
+  if(slides.length === 0) return;
 
-  let i=0;
+  let current = 0;
 
-  slides[0].classList.add("active");
+  slides[current].classList.add("active");
 
-  setInterval(()=>{
+  setInterval(function(){
 
-    slides[i].classList.remove("active");
+    slides[current].classList.remove("active");
 
-    i=(i+1)%slides.length;
+    current = (current + 1) % slides.length;
 
-    slides[i].classList.add("active");
+    slides[current].classList.add("active");
 
   },4000);
 
