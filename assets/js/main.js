@@ -68,6 +68,15 @@ link.addEventListener("click", function(e){
 if(window.innerWidth <= 900){
 
 e.preventDefault();
+
+/* CLOSE OTHER DROPDOWNS */
+dropdowns.forEach(function(d){
+if(d !== dropdown){
+d.classList.remove("open");
+}
+});
+
+/* TOGGLE CURRENT */
 dropdown.classList.toggle("open");
 
 }
