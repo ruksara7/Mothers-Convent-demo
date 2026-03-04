@@ -1,39 +1,73 @@
 document.addEventListener("DOMContentLoaded", function () {
 
 /* ======================================
+   LOAD HEADER
+====================================== */
+
+fetch("partial/header.html")
+.then(res => res.text())
+.then(data => {
+
+document.getElementById("header").innerHTML = data;
+
+initMenu();
+initDropdowns();
+
+});
+
+
+/* ======================================
+   LOAD FOOTER
+====================================== */
+
+fetch("partial/footer.html")
+.then(res => res.text())
+.then(data => {
+
+document.getElementById("footer").innerHTML = data;
+
+});
+
+
+/* ======================================
    NAVIGATION / HAMBURGER MENU
 ====================================== */
 
-const hamburger = document.querySelector(".hamburger"); 
+function initMenu(){
+
+const hamburger = document.querySelector(".hamburger");
 const nav = document.querySelector(".nav");
 
-if (hamburger && nav) {
+if(hamburger && nav){
 
-hamburger.addEventListener("click", function () {
+hamburger.addEventListener("click", function(){
 nav.classList.toggle("show");
 });
 
 }
 
+}
+
 
 /* ======================================
-   MOBILE DROPDOWN MENUS
+   MOBILE DROPDOWN
 ====================================== */
+
+function initDropdowns(){
 
 const dropdowns = document.querySelectorAll(".dropdown");
 
-dropdowns.forEach(function (dropdown) {
+dropdowns.forEach(function (dropdown){
 
 const link = dropdown.querySelector("a");
 
-if (link) {
+if(link){
 
-link.addEventListener("click", function (e) {
+link.addEventListener("click", function(e){
 
-if (window.innerWidth <= 900) {
+if(window.innerWidth <= 900){
 
 e.preventDefault();
-
 dropdown.classList.toggle("open");
 
 }
@@ -44,24 +78,7 @@ dropdown.classList.toggle("open");
 
 });
 
-
-/* ======================================
-   CLOSE MENU WHEN CLICK OUTSIDE
-====================================== */
-
-document.addEventListener("click", function (e) {
-
-if (!e.target.closest(".site-header")) {
-
-nav?.classList.remove("show");
-
-dropdowns.forEach(function (d) {
-d.classList.remove("open");
-});
-
 }
-
-});
 
 
 /* ======================================
@@ -71,42 +88,41 @@ d.classList.remove("open");
 const slides = document.querySelectorAll(".slide");
 let slideIndex = 0;
 
-function showSlide() {
+function showSlide(){
 
-slides.forEach(function (slide) {
+slides.forEach(function(slide){
 slide.style.display = "none";
 });
 
 slideIndex++;
 
-if (slideIndex > slides.length) {
+if(slideIndex > slides.length){
 slideIndex = 1;
 }
 
-if (slides.length > 0) {
+if(slides.length > 0){
 slides[slideIndex - 1].style.display = "block";
 }
 
 }
 
-if (slides.length > 0) {
+if(slides.length > 0){
 
 showSlide();
-
-setInterval(showSlide, 5000);
+setInterval(showSlide,5000);
 
 }
 
 
 /* ======================================
-   GALLERY IMAGE CLICK ZOOM
+   GALLERY ZOOM
 ====================================== */
 
 const galleryImages = document.querySelectorAll(".gallery-grid img");
 
-galleryImages.forEach(function (img) {
+galleryImages.forEach(function(img){
 
-img.addEventListener("click", function () {
+img.addEventListener("click", function(){
 
 const overlay = document.createElement("div");
 overlay.classList.add("img-overlay");
@@ -115,58 +131,13 @@ const largeImg = document.createElement("img");
 largeImg.src = img.src;
 
 overlay.appendChild(largeImg);
-
 document.body.appendChild(overlay);
 
-overlay.addEventListener("click", function () {
+overlay.addEventListener("click", function(){
 overlay.remove();
 });
 
 });
-
-});
-
-
-/* ======================================
-   SMOOTH SCROLL (optional links)
-====================================== */
-
-document.querySelectorAll('a[href^="#"]').forEach(function (anchor) {
-
-anchor.addEventListener("click", function (e) {
-
-const target = document.querySelector(this.getAttribute("href"));
-
-if (target) {
-
-e.preventDefault();
-
-target.scrollIntoView({
-behavior: "smooth"
-});
-
-}
-
-});
-
-});
-
-
-/* ======================================
-   WINDOW RESIZE RESET
-====================================== */
-
-window.addEventListener("resize", function () {
-
-if (window.innerWidth > 900) {
-
-nav?.classList.remove("show");
-
-dropdowns.forEach(function (d) {
-d.classList.remove("open");
-});
-
-}
 
 });
 
