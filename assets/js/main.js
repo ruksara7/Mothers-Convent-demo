@@ -1,17 +1,19 @@
 /* =========================================
-MAIN JS — HEADER LOAD + MENU + SLIDER
+MAIN JS — HEADER + MENU + SLIDER
 ========================================= */
 
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", function(){
+
 loadPartials();
 initSlider();
+
 });
 
 /* =========================================
-LOAD HEADER & FOOTER
+LOAD HEADER / FOOTER
 ========================================= */
 
-function loadPartials() {
+function loadPartials(){
 
 const base = "/Mothers-Convent-demo/";
 
@@ -23,9 +25,10 @@ fetch(base + "partial/header.html")
   document.getElementById("header").innerHTML = data;
 
   initMenu();
-
-});
 ```
+
+})
+.catch(err => console.error("Header load error:", err));
 
 fetch(base + "partial/footer.html")
 .then(res => res.text())
@@ -33,9 +36,10 @@ fetch(base + "partial/footer.html")
 
 ```
   document.getElementById("footer").innerHTML = data;
-
-});
 ```
+
+})
+.catch(err => console.error("Footer load error:", err));
 
 }
 
@@ -54,38 +58,40 @@ if(!menuToggle || !navbar) return;
 
 navbar.classList.remove("active");
 
-/* hamburger click */
+/* hamburger toggle */
 
-menuToggle.addEventListener("click", function(){
+menuToggle.addEventListener("click", function(e){
 
 ```
-navbar.classList.toggle("active");
+  e.stopPropagation();
+
+  navbar.classList.toggle("active");
 ```
 
 });
 
-/* dropdown toggle (mobile) */
+/* dropdown toggle for mobile */
 
 document.querySelectorAll(".dropdown-toggle").forEach(toggle => {
 
 ```
-toggle.addEventListener("click", function(e){
+  toggle.addEventListener("click", function(e){
 
-  if(window.innerWidth <= 768){
+      if(window.innerWidth <= 768){
 
-    e.preventDefault();
+          e.preventDefault();
 
-    const menu = this.parentElement.querySelector(".dropdown-menu");
+          const menu = this.parentElement.querySelector(".dropdown-menu");
 
-    document.querySelectorAll(".dropdown-menu").forEach(m=>{
-      if(m !== menu) m.classList.remove("active");
-    });
+          document.querySelectorAll(".dropdown-menu").forEach(m=>{
+              if(m !== menu) m.classList.remove("active");
+          });
 
-    menu.classList.toggle("active");
+          menu.classList.toggle("active");
 
-  }
+      }
 
-});
+  });
 ```
 
 });
@@ -95,15 +101,15 @@ toggle.addEventListener("click", function(e){
 document.addEventListener("click", function(e){
 
 ```
-if(!e.target.closest("#navbar") && !e.target.closest("#menuToggle")){
+  if(!e.target.closest("#navbar") && !e.target.closest("#menuToggle")){
 
-  navbar.classList.remove("active");
+      navbar.classList.remove("active");
 
-  document.querySelectorAll(".dropdown-menu").forEach(menu=>{
-    menu.classList.remove("active");
-  });
+      document.querySelectorAll(".dropdown-menu").forEach(menu=>{
+          menu.classList.remove("active");
+      });
 
-}
+  }
 ```
 
 });
@@ -111,14 +117,14 @@ if(!e.target.closest("#navbar") && !e.target.closest("#menuToggle")){
 }
 
 /* =========================================
-HOMEPAGE SLIDER
+HERO SLIDER
 ========================================= */
 
 function initSlider(){
 
 const slides = document.querySelectorAll(".slide");
 
-if(!slides.length) return;
+if(slides.length === 0) return;
 
 let current = 0;
 
@@ -127,13 +133,13 @@ slides[current].classList.add("active");
 setInterval(function(){
 
 ```
-slides[current].classList.remove("active");
+  slides[current].classList.remove("active");
 
-current = (current + 1) % slides.length;
+  current = (current + 1) % slides.length;
 
-slides[current].classList.add("active");
+  slides[current].classList.add("active");
 ```
 
-},4000);
+}, 4000);
 
 }
