@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", function () {
    NAVIGATION / HAMBURGER MENU
 ====================================== */
 
-const hamburger = document.querySelector(".hamburger");
+const hamburger = document.querySelector(".hamburger"); 
 const nav = document.querySelector(".nav");
 
 if (hamburger && nav) {
