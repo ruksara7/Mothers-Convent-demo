@@ -55,12 +55,28 @@ z-index:1000;
 display:flex;
 align-items:center;
 justify-content:space-between;
-height:70px;
+padding:12px 0;
+min-height:80px;
+}
+
+.logo{
+display:flex;
+align-items:center;
+gap:10px;
 }
 
 .logo img{
-height:45px;
+height:50px;
+width:auto;
 }
+
+.logo span{
+font-size:18px;
+font-weight:600;
+color:white;
+}
+
+/* NAV */
 
 .nav{
 display:flex;
@@ -68,7 +84,7 @@ display:flex;
 
 .nav-menu{
 display:flex;
-gap:26px;
+gap:25px;
 align-items:center;
 }
 
@@ -83,7 +99,7 @@ padding:6px 0;
 display:block;
 }
 
-/* dropdown */
+/* DROPDOWN */
 
 .dropdown-menu{
 position:absolute;
@@ -105,35 +121,39 @@ font-size:14px;
 display:block;
 }
 
-/* hamburger */
+/* HAMBURGER */
 
 .hamburger{
 display:none;
 font-size:28px;
 cursor:pointer;
+background:none;
+border:none;
+color:white;
 }
 
 
 /* =====================================================
-   PAGE BANNER
+   HERO SLIDER
 ===================================================== */
 
-.page-banner{
+.hero-slider{
 width:100%;
-height:260px;
-background-size:cover;
-background-position:center;
-display:flex;
-align-items:center;
-justify-content:center;
+overflow:hidden;
 }
 
-.page-banner h1{
-color:white;
-font-size:36px;
-background:rgba(0,0,0,0.45);
-padding:10px 22px;
-border-radius:4px;
+.slider{
+position:relative;
+}
+
+.slide{
+display:none;
+}
+
+.slide img{
+width:100%;
+height:420px;
+object-fit:cover;
 }
 
 
@@ -187,6 +207,16 @@ padding:18px;
 
 
 /* =====================================================
+   FACILITIES
+===================================================== */
+
+.facility-card img{
+height:200px;
+object-fit:cover;
+}
+
+
+/* =====================================================
    STAFF / FACULTY
 ===================================================== */
 
@@ -223,16 +253,6 @@ margin-bottom:12px;
 
 
 /* =====================================================
-   FACILITIES
-===================================================== */
-
-.facility-card img{
-height:200px;
-object-fit:cover;
-}
-
-
-/* =====================================================
    GALLERY
 ===================================================== */
 
@@ -247,6 +267,7 @@ width:100%;
 height:220px;
 object-fit:cover;
 border-radius:4px;
+cursor:pointer;
 }
 
 
@@ -263,20 +284,37 @@ color:#0d2b45;
 
 
 /* =====================================================
+   BUTTON
+===================================================== */
+
+.btn-primary{
+background:#0d2b45;
+color:white;
+padding:12px 22px;
+border-radius:4px;
+display:inline-block;
+}
+
+.btn-primary:hover{
+background:#133a5f;
+}
+
+
+/* =====================================================
    FOOTER
 ===================================================== */
 
 .site-footer{
 background:#0d2b45;
 color:white;
-padding:60px 0 25px;
+padding:40px 0 15px;
 margin-top:60px;
 }
 
 .footer-grid{
 display:grid;
 grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-gap:40px;
+gap:25px;
 }
 
 .footer-col h3{
@@ -318,7 +356,7 @@ margin-bottom:6px;
 color:white;
 }
 
-/* social */
+/* SOCIAL */
 
 .social-links{
 display:flex;
@@ -339,12 +377,12 @@ color:white;
 background:#1c4f7c;
 }
 
-/* copyright */
+/* COPYRIGHT */
 
 .footer-bottom{
 border-top:1px solid rgba(255,255,255,0.15);
-margin-top:35px;
-padding-top:15px;
+margin-top:25px;
+padding-top:10px;
 text-align:center;
 font-size:13px;
 color:#cccccc;
@@ -360,7 +398,7 @@ color:#cccccc;
 .nav{
 display:none;
 position:absolute;
-top:70px;
+top:80px;
 left:0;
 width:100%;
 background:#0d2b45;
@@ -398,16 +436,16 @@ display:block;
 
 @media (max-width:500px){
 
-.page-banner{
-height:200px;
-}
-
-.page-banner h1{
-font-size:24px;
-}
-
 .section{
 padding:40px 0;
+}
+
+.section-title h2{
+font-size:26px;
+}
+
+.slide img{
+height:260px;
 }
 
 }
