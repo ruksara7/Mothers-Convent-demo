@@ -20,7 +20,7 @@ initDropdowns();
    LOAD FOOTER
 ====================================== */
 
-fetch("/Mothers-Convent-demo/partial/header.html")
+fetch("/Mothers-Convent-demo/partial/footer.html")
 .then(res => res.text())
 .then(data => {
 
