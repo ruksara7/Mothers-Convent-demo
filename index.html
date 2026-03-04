@@ -1,1 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
 
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Mothers Convent School | Varanasi</title>
+
+<link rel="stylesheet" href="assets/css/main.css">
+
+<script src="assets/js/main.js" defer></script>
+
+</head>
+
+<body>
+
+
+<!-- HEADER LOAD -->
+
+<div id="header"></div>
+
+
+<!-- HERO SLIDER -->
+
+<section class="hero-slider">
+
+<div class="slider">
+
+<div class="slide">
+<img src="assets/images/banner/banner-homepageuse.jpg" alt="School Banner">
+</div>
+
+<div class="slide">
+<img src="assets/images/banner/banner-result.jpg" alt="School Banner">
+</div>
+
+<div class="slide">
+<img src="assets/images/banner/banner-result1use.jpg" alt="School Banner">
+</div>
+
+<div class="slide">
+<img src="assets/images/banner/banner-staffuse.jpg" alt="School Banner">
+</div>
+
+</div>
+
+</section>
+
+
+<!-- ABOUT SCHOOL -->
+
+<section class="section">
+
+<div class="container">
+
+<div class="section-title">
+<h2>About Mothers Convent School</h2>
+</div>
+
+<p>
+Mothers Convent School, located in Varanasi, is dedicated to providing
+quality education in a nurturing and disciplined environment. Our goal
+is to develop academic excellence, strong moral values, and overall
+personality growth in every student.
+</p>
+
+<p>
+The school focuses on modern teaching methods, supportive faculty,
+and balanced development through academics, sports, and co-curricular
+activities.
+</p>
+
+</div>
+
+</section>
+
+
+<!-- WHY CHOOSE US -->
+
+<section class="section">
+
+<div class="container">
+
+<div class="section-title">
+<h2>Why Choose Us</h2>
+</div>
+
+<div class="grid">
+
+<div class="card">
+<div class="card-body">
+<h3>Experienced Teachers</h3>
+<p>Dedicated and qualified teachers focused on student success.</p>
+</div>
+</div>
+
+<div class="card">
+<div class="card-body">
+<h3>Quality Education</h3>
+<p>Strong academic curriculum designed for future excellence.</p>
+</div>
+</div>
+
+<div class="card">
+<div class="card-body">
+<h3>Safe Environment</h3>
+<p>A disciplined and supportive learning atmosphere for students.</p>
+</div>
+</div>
+
+<div class="card">
+<div class="card-body">
+<h3>Holistic Development</h3>
+<p>Focus on academics, sports, and character development.</p>
+</div>
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- FACILITIES PREVIEW -->
+
+<section class="section">
+
+<div class="container">
+
+<div class="section-title">
+<h2>Our Facilities</h2>
+</div>
+
+<div class="grid">
+
+<div class="card facility-card">
+
+<img src="assets/images/facilities/computer-lab1use.jpg" alt="Computer Lab">
+
+<div class="card-body">
+<h3>Computer Lab</h3>
+<p>Modern computer lab for practical digital learning.</p>
+</div>
+
+</div>
+
+
+<div class="card facility-card">
+
+<img src="assets/images/facilities/library1use.jpg" alt="Library">
+
+<div class="card-body">
+<h3>Library</h3>
+<p>A well-stocked library supporting reading and research.</p>
+</div>
+
+</div>
+
+
+<div class="card facility-card">
+
+<img src="assets/images/facilities/sports1use.jpg" alt="Sports">
+
+<div class="card-body">
+<h3>Sports</h3>
+<p>Sports activities for physical fitness and teamwork.</p>
+</div>
+
+</div>
+
+
+<div class="card facility-card">
+
+<img src="assets/images/facilities/transport1use.jpg" alt="Transport">
+
+<div class="card-body">
+<h3>Transport</h3>
+<p>Safe and reliable transport facility for students.</p>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- ADMISSION SECTION -->
+
+<section class="section">
+
+<div class="container">
+
+<div class="section-title">
+<h2>Admissions Open</h2>
+</div>
+
+<p style="text-align:center; max-width:700px; margin:auto;">
+
+Admissions are open for the upcoming academic session.
+Parents are welcome to visit the school campus or contact us
+for admission details, eligibility criteria, and application forms.
+
+</p>
+
+<br>
+
+<div style="text-align:center;">
+
+<a href="admission.html" class="btn-primary">
+Apply for Admission
+</a>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- FOOTER LOAD -->
+
+<div id="footer"></div>
+
+
+<script>
+
+fetch("partial/header.html")
+.then(res => res.text())
+.then(data => {
+document.getElementById("header").innerHTML = data;
+});
+
+fetch("partial/footer.html")
+.then(res => res.text())
+.then(data => {
+document.getElementById("footer").innerHTML = data;
+});
+
+</script>
+
+
+</body>
+</html>
