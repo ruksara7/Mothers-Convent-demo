@@ -1,6 +1,6 @@
 /* =====================================================
    MAIN.JS
-   Loads header/footer + navigation + slider
+   Universal loader for header + footer + navigation
 ===================================================== */
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -12,38 +12,55 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 /* =====================================================
+   DETECT BASE PATH
+===================================================== */
+
+function getBasePath() {
+
+  const depth = window.location.pathname.split("/").length - 2;
+
+  if (depth <= 1) return "";
+
+  return "../".repeat(depth - 1);
+
+}
+
+
+/* =====================================================
    LOAD HEADER + FOOTER
 ===================================================== */
 
 function loadPartials() {
 
-  const headerContainer = document.getElementById("header");
-  const footerContainer = document.getElementById("footer");
+  const base = getBasePath();
 
-  if (headerContainer) {
+  const header = document.getElementById("header");
+  const footer = document.getElementById("footer");
 
-    fetch("/partial/header.html")
-      .then(response => response.text())
+  if (header) {
+
+    fetch(base + "partial/header.html")
+      .then(res => res.text())
       .then(data => {
 
-        headerContainer.innerHTML = data;
+        header.innerHTML = data;
         setupMenu();
 
       })
-      .catch(error => console.error("Header load error:", error));
+      .catch(err => console.log("Header load error:", err));
 
   }
 
-  if (footerContainer) {
+  if (footer) {
 
-    fetch("/partial/footer.html")
-      .then(response => response.text())
+    fetch(base + "partial/footer.html")
+      .then(res => res.text())
       .then(data => {
 
-        footerContainer.innerHTML = data;
+        footer.innerHTML = data;
 
       })
-      .catch(error => console.error("Footer load error:", error));
+      .catch(err => console.log("Footer load error:", err));
 
   }
 
@@ -61,58 +78,30 @@ function setupMenu() {
 
   if (!menuToggle || !navbar) return;
 
-
-  /* MOBILE MENU */
-
-  menuToggle.addEventListener("click", function () {
+  menuToggle.addEventListener("click", () => {
 
     navbar.classList.toggle("active");
 
   });
 
 
-  /* DROPDOWN MENU */
-
-  const dropdownToggles = document.querySelectorAll(".dropdown-toggle");
-
-  dropdownToggles.forEach(toggle => {
+  document.querySelectorAll(".dropdown-toggle").forEach(toggle => {
 
     toggle.addEventListener("click", function (e) {
 
       e.preventDefault();
 
-      const dropdownMenu = this.nextElementSibling;
+      const menu = this.nextElementSibling;
 
-      document.querySelectorAll(".dropdown-menu").forEach(menu => {
+      document.querySelectorAll(".dropdown-menu").forEach(m => {
 
-        if (menu !== dropdownMenu) {
-
-          menu.classList.remove("active");
-
-        }
+        if (m !== menu) m.classList.remove("active");
 
       });
 
-      dropdownMenu.classList.toggle("active");
+      menu.classList.toggle("active");
 
     });
-
-  });
-
-
-  /* CLOSE MENU WHEN CLICK OUTSIDE */
-
-  document.addEventListener("click", function (e) {
-
-    if (!e.target.closest(".navbar")) {
-
-      document.querySelectorAll(".dropdown-menu").forEach(menu => {
-
-        menu.classList.remove("active");
-
-      });
-
-    }
 
   });
 
@@ -120,30 +109,24 @@ function setupMenu() {
 
 
 /* =====================================================
-   BANNER SLIDER
+   HOMEPAGE SLIDER
 ===================================================== */
 
 function initSlider() {
 
   const slides = document.querySelectorAll(".slide");
 
-  if (slides.length === 0) return;
+  if (!slides.length) return;
 
   let current = 0;
 
   slides[0].classList.add("active");
 
-  setInterval(function () {
+  setInterval(() => {
 
     slides[current].classList.remove("active");
 
-    current++;
-
-    if (current >= slides.length) {
-
-      current = 0;
-
-    }
+    current = (current + 1) % slides.length;
 
     slides[current].classList.add("active");
 
