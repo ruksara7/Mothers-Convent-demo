@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", function () {
    LOAD HEADER
 ====================================== */
 
-fetch("partial/header.html")
+fetch("/Mothers-Convent-demo/partial/header.html")
 .then(res => res.text())
 .then(data => {
 
@@ -20,7 +20,7 @@ initDropdowns();
    LOAD FOOTER
 ====================================== */
 
-fetch("partial/footer.html")
+fetch("/Mothers-Convent-demo/partial/header.html")
 .then(res => res.text())
 .then(data => {
 
