@@ -121,6 +121,9 @@ font-size:14px;
 display:block;
 }
 
+.dropdown.open .dropdown-menu{
+display:block;
+}
 /* HAMBURGER */
 
 .hamburger{
