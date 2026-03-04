@@ -1,27 +1,26 @@
 /* =====================================================
-   MAIN.JS
-   Universal loader for header + footer + navigation
+   MASTER JS FOR STATIC SCHOOL WEBSITE
+   Works for ALL pages in any folder depth
 ===================================================== */
 
-document.addEventListener("DOMContentLoaded", function () {
-
+document.addEventListener("DOMContentLoaded", () => {
   loadPartials();
   initSlider();
-
 });
 
 
 /* =====================================================
-   DETECT BASE PATH
+   DETERMINE BASE PATH AUTOMATICALLY
 ===================================================== */
 
 function getBasePath() {
 
-  const depth = window.location.pathname.split("/").length - 2;
+  const path = window.location.pathname;
 
-  if (depth <= 1) return "";
+  // remove file name
+  const depth = path.split("/").slice(0, -1).filter(Boolean).length;
 
-  return "../".repeat(depth - 1);
+  return depth === 0 ? "" : "../".repeat(depth);
 
 }
 
@@ -38,30 +37,22 @@ function loadPartials() {
   const footer = document.getElementById("footer");
 
   if (header) {
-
     fetch(base + "partial/header.html")
       .then(res => res.text())
-      .then(data => {
-
-        header.innerHTML = data;
+      .then(html => {
+        header.innerHTML = html;
         setupMenu();
-
       })
-      .catch(err => console.log("Header load error:", err));
-
+      .catch(err => console.error("Header load failed:", err));
   }
 
   if (footer) {
-
     fetch(base + "partial/footer.html")
       .then(res => res.text())
-      .then(data => {
-
-        footer.innerHTML = data;
-
+      .then(html => {
+        footer.innerHTML = html;
       })
-      .catch(err => console.log("Footer load error:", err));
-
+      .catch(err => console.error("Footer load failed:", err));
   }
 
 }
@@ -73,30 +64,29 @@ function loadPartials() {
 
 function setupMenu() {
 
-  const menuToggle = document.getElementById("menuToggle");
+  const toggle = document.getElementById("menuToggle");
   const navbar = document.getElementById("navbar");
 
-  if (!menuToggle || !navbar) return;
+  if (!toggle || !navbar) return;
 
-  menuToggle.addEventListener("click", () => {
+  /* MOBILE MENU */
 
+  toggle.addEventListener("click", () => {
     navbar.classList.toggle("active");
-
   });
 
+  /* DROPDOWN MENUS */
 
-  document.querySelectorAll(".dropdown-toggle").forEach(toggle => {
+  document.querySelectorAll(".dropdown-toggle").forEach(btn => {
 
-    toggle.addEventListener("click", function (e) {
+    btn.addEventListener("click", e => {
 
       e.preventDefault();
 
-      const menu = this.nextElementSibling;
+      const menu = btn.nextElementSibling;
 
       document.querySelectorAll(".dropdown-menu").forEach(m => {
-
         if (m !== menu) m.classList.remove("active");
-
       });
 
       menu.classList.toggle("active");
@@ -118,17 +108,17 @@ function initSlider() {
 
   if (!slides.length) return;
 
-  let current = 0;
+  let index = 0;
 
   slides[0].classList.add("active");
 
   setInterval(() => {
 
-    slides[current].classList.remove("active");
+    slides[index].classList.remove("active");
 
-    current = (current + 1) % slides.length;
+    index = (index + 1) % slides.length;
 
-    slides[current].classList.add("active");
+    slides[index].classList.add("active");
 
   }, 4000);
 
