@@ -1,100 +1,147 @@
 /* ======================================================================
-   MAIN.JS — FIXED DROPDOWN BOX ISSUE
+   MAIN.JS — HEADER LOAD + DROPDOWN + MOBILE MENU
    ====================================================================== */
 
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener("DOMContentLoaded", function () {
   loadPartials();
   initSlider();
 });
 
+/* ================= LOAD HEADER & FOOTER ================= */
+
 function loadPartials() {
-  const basePath = window.location.pathname.includes('Mothers-Convent-demo')
-    ? '/Mothers-Convent-demo/' : '/';
 
-  fetch(basePath + 'partial/header.html')
-    .then(res => res.text())
+  const basePath = "/Mothers-Convent-demo/";
+
+  fetch(basePath + "partial/header.html")
+    .then(response => response.text())
     .then(data => {
-      document.getElementById('header').innerHTML = data;
-      // DELAY setupMenu until DOM settles
-      setTimeout(setupMenu, 100);
+      document.getElementById("header").innerHTML = data;
+
+      // wait until header HTML exists in DOM
+      setupMenu();
     })
-    .catch(err => console.error('Header error:', err));
+    .catch(err => console.error("Header load error:", err));
 
-  fetch(basePath + 'partial/footer.html')
-    .then(res => res.text())
+  fetch(basePath + "partial/footer.html")
+    .then(response => response.text())
     .then(data => {
-      document.getElementById('footer').innerHTML = data;
-    });
+      document.getElementById("footer").innerHTML = data;
+    })
+    .catch(err => console.error("Footer load error:", err));
 }
 
+
+/* ================= MENU SYSTEM ================= */
+
 function setupMenu() {
-  const menuToggle = document.getElementById('menuToggle');
-  const navbar = document.getElementById('navbar');
+
+  const menuToggle = document.getElementById("menuToggle");
+  const navbar = document.getElementById("navbar");
 
   if (!menuToggle || !navbar) return;
 
-  // CLOSE ALL DROPDOWNS FIRST (FIXES OPEN BOX)
-  document.querySelectorAll('.dropdown-menu').forEach(menu => {
-    menu.classList.remove('active');
+  /* MOBILE MENU TOGGLE */
+
+  menuToggle.addEventListener("click", function () {
+    navbar.classList.toggle("active");
+    document.body.classList.toggle("menu-open");
   });
 
-  menuToggle.addEventListener('click', () => {
-    navbar.classList.toggle('active');
-    document.body.classList.toggle('menu-open');
-  });
+  /* DROPDOWN CLICK */
 
-  document.querySelectorAll('.dropdown-toggle').forEach(toggle => {
-    toggle.addEventListener('click', function(e) {
+  const dropdownToggles = document.querySelectorAll(".dropdown-toggle");
+
+  dropdownToggles.forEach(toggle => {
+
+    toggle.addEventListener("click", function (e) {
+
       e.preventDefault();
-      e.stopPropagation();
 
-      const dropdownMenu = this.parentElement.querySelector('.dropdown-menu');
-      
-      // Close all other dropdowns
-      document.querySelectorAll('.dropdown-menu').forEach(menu => {
-        if (menu !== dropdownMenu) menu.classList.remove('active');
+      const dropdown = this.parentElement;
+      const menu = dropdown.querySelector(".dropdown-menu");
+
+      /* close other dropdowns */
+
+      document.querySelectorAll(".dropdown-menu").forEach(otherMenu => {
+        if (otherMenu !== menu) {
+          otherMenu.classList.remove("active");
+        }
       });
 
-      // Toggle current
-      dropdownMenu.classList.toggle('active');
+      /* toggle current */
+
+      menu.classList.toggle("active");
+
     });
+
   });
 
-  // Close on outside click
-  document.addEventListener('click', (e) => {
-    if (!e.target.closest('#navbar')) {
-      document.querySelectorAll('.dropdown-menu').forEach(menu => {
-        menu.classList.remove('active');
+
+  /* CLOSE MENU IF CLICK OUTSIDE */
+
+  document.addEventListener("click", function (e) {
+
+    if (!e.target.closest("#navbar")) {
+
+      document.querySelectorAll(".dropdown-menu").forEach(menu => {
+        menu.classList.remove("active");
       });
-      navbar.classList.remove('active');
-      document.body.classList.remove('menu-open');
+
+      navbar.classList.remove("active");
+      document.body.classList.remove("menu-open");
+
     }
+
   });
 
-  // Mobile auto-close
-  document.querySelectorAll('.nav-link').forEach(link => {
-    link.addEventListener('click', () => {
+
+  /* MOBILE AUTO CLOSE */
+
+  const navLinks = document.querySelectorAll(".nav-link");
+
+  navLinks.forEach(link => {
+
+    link.addEventListener("click", function () {
+
       if (window.innerWidth <= 600) {
-        navbar.classList.remove('active');
-        document.body.classList.remove('menu-open');
-        document.querySelectorAll('.dropdown-menu').forEach(menu => {
-          menu.classList.remove('active');
+
+        navbar.classList.remove("active");
+        document.body.classList.remove("menu-open");
+
+        document.querySelectorAll(".dropdown-menu").forEach(menu => {
+          menu.classList.remove("active");
         });
+
       }
+
     });
+
   });
+
 }
 
+
+/* ================= HOMEPAGE SLIDER ================= */
+
 function initSlider() {
-  const slides = document.querySelectorAll('.slide');
+
+  const slides = document.querySelectorAll(".slide");
+
   if (!slides.length) return;
 
   let current = 0;
-  slides[0].classList.add('active');
 
-  setInterval(() => {
-    slides[current].classList.remove('active');
+  slides[current].classList.add("active");
+
+  setInterval(function () {
+
+    slides[current].classList.remove("active");
+
     current = (current + 1) % slides.length;
-    slides[current].classList.add('active');
+
+    slides[current].classList.add("active");
+
   }, 4000);
+
 }
