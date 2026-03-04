@@ -1,10 +1,44 @@
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+html,body{
+font-family:Arial, Helvetica, sans-serif;
+line-height:1.6;
+background:#f5f7fb;
+color:#222;
+overflow-x:hidden;
+}
+
+img{
+max-width:100%;
+display:block;
+}
+
+a{
+text-decoration:none;
+color:inherit;
+}
+
+ul{
+list-style:none;
+}
+
+/* CONTAINER */
+
+.container{
+width:92%;
+max-width:1200px;
+margin:auto;
+}
+
 /* ================= HEADER ================= */
 
 .header{
 background:#0d47a1;
 color:#fff;
-position:relative;
-z-index:1000;
 }
 
 .header .container{
@@ -12,23 +46,21 @@ display:flex;
 align-items:center;
 justify-content:space-between;
 padding:12px 0;
-position:relative;
 }
 
 /* LOGO */
 
 .logo img{
 height:60px;
-width:auto;
 }
 
 /* HAMBURGER */
 
 #menuToggle{
 display:none;
-font-size:26px;
 background:none;
 border:none;
+font-size:26px;
 color:#fff;
 cursor:pointer;
 }
@@ -40,15 +72,11 @@ display:flex;
 align-items:center;
 }
 
-/* MAIN MENU */
-
 #navbar > ul{
 display:flex;
-gap:22px;
+gap:20px;
 align-items:center;
 }
-
-/* MENU ITEMS */
 
 #navbar li{
 position:relative;
@@ -57,8 +85,7 @@ position:relative;
 #navbar a{
 color:#fff;
 font-weight:500;
-padding:10px 6px;
-display:block;
+padding:8px 4px;
 }
 
 #navbar a:hover
@@ -66,50 +93,35 @@ display:block;
 /* ================= DROPDOWN ================= */
 
 .dropdown-menu{
+display:none;
 position:absolute;
 top:100%;
 left:0;
 background:#fff;
-min-width:220px;
-border-radius:6px;
-box-shadow:0 8px 20px rgba(0,0,0,.15);
-padding:6px 0;
-
-opacity:0;
-visibility:hidden;
-pointer-events:none;
-
-transition:0.2s;
+min-width:200px;
+box-shadow:0 6px 16px rgba(0,0,0,.15);
+border-radius:4px;
 }
 
 .dropdown-menu li a{
-padding:12px 18px;
+display:block;
+padding:10px 16px;
 color:#222;
 }
 
 .dropdown-menu li a:hover
-
-/* DROPDOWN ACTIVE */
-
-.dropdown-menu.active{
-opacity:1;
-visibility:visible;
-pointer-events:auto;
-}
 
 /* DESKTOP HOVER */
 
 @media(min-width:900px){
 
 .dropdown:hover .dropdown-menu{
-opacity:1;
-visibility:visible;
-pointer-events:auto;
+display:block;
 }
 
 }
 
-/* ================= MOBILE MENU ================= */
+/* MOBILE MENU */
 
 @media(max-width:768px){
 
@@ -117,25 +129,16 @@ pointer-events:auto;
 display:block;
 }
 
-/* MENU CLOSED BY DEFAULT */
-
 #navbar{
 display:none;
-position:absolute;
-top:100%;
-left:0;
 width:100%;
-background:#0d47a1;
 flex-direction:column;
+background:#0d47a1;
 }
-
-/* OPEN MENU */
 
 #navbar.active{
 display:flex;
 }
-
-/* STACK MENU */
 
 #navbar > ul{
 flex-direction:column;
@@ -147,27 +150,109 @@ gap:0;
 width:100%;
 }
 
-/* LINKS */
-
 #navbar a{
-padding:16px 22px;
+display:block;
+padding:14px 20px;
 border-top:1px solid rgba(255,255,255,.2);
 }
-
-/* MOBILE DROPDOWN */
 
 .dropdown-menu{
 position:static;
 background:#0b2a63;
-box-shadow:none;
+display:none;
+}
 
-opacity:1;
-visibility:visible;
-pointer-events:auto;
+.dropdown-menu.active{
+display:block;
 }
 
 .dropdown-menu li a{
 color:#fff;
 }
 
+}
+
+/* ================= HERO SLIDER ================= */
+
+.hero-slider{
+position:relative;
+height:60vh;
+min-height:400px;
+overflow:hidden;
+}
+
+.slide{
+position:absolute;
+width:100%;
+height:100%;
+background-size:cover;
+background-position:center;
+display:none;
+}
+
+.slide.active{
+display:block;
+}
+
+/* ================= GRID ================= */
+
+.grid{
+display:grid;
+gap:24px;
+}
+
+.grid-4{
+grid-template-columns:repeat(4,1fr);
+}
+
+.grid-3{
+grid-template-columns:repeat(3,1fr);
+}
+
+.grid-2{
+grid-template-columns:repeat(2,1fr);
+}
+
+@media(max-width:900px){
+
+.grid-4,.grid-3{
+grid-template-columns:repeat(2,1fr);
+}
+
+}
+
+@media(max-width:600px){
+
+.grid-4,.grid-3,.grid-2{
+grid-template-columns:1fr;
+}
+
+}
+
+/* ================= CARDS ================= */
+
+.card{
+background:#fff;
+padding:20px;
+border-radius:6px;
+box-shadow:0 2px 6px rgba(0,0,0,.08);
+transition:.2s;
+}
+
+.card:hover{
+transform:translateY(-3px);
+box-shadow:0 6px 16px rgba(0,0,0,.12);
+}
+
+/* ================= FOOTER ================= */
+
+.footer{
+background:#0b2a63;
+color:#ddd;
+padding:40px 0;
+font-size:14px;
+}
+
+.footer a{
+color:#fff;
 }
